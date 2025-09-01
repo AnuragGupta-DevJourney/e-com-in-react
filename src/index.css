@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+.clear-sign-btn {
+  background-color: #e0e0e0;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slick-slider {
+  position: relative;
+}
+
+.slick-prev {
+  top: 50%;
+  left: 5px !important;
+  z-index: 88;
+  position: absolute;
+}
+
+.slick-next {
+  right: 15px !important;
+  z-index: 88;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 32px !important;
+    line-height: 1;
+    opacity: .75;
+    color: #f50000 !important;
+  }
+
+.slick-prev,
+.slick-next {
+  /* background-color: red !important; */
+  color: rgb(255, 13, 13) !important;
+}

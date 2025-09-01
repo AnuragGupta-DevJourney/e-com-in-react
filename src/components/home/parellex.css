@@ -1,0 +1,19 @@
+.parellex-effect-conatiner {
+  max-width: 1280px;
+  background-image: url("https://zaptro.netlify.app/assets/banner1-DnQF7_gI.jpg");
+  background-attachment: fixed;
+  height: 600px;
+  width: 100%;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center center; */
+  margin: 0 auto;
+}
+
+@media screen and (max-width:576px) {
+    .parellex-effect-conatiner{
+        height: 400px;
+        background-position: center;
+    }
+}
