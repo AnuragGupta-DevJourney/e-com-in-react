@@ -33,10 +33,11 @@ function Navbar() {
     try {
       const loderId = toast.loading("Detecting the address...");
       navigator.geolocation.getCurrentPosition(async (position) => {
-        const { longitude, latitude } = position.coords;
+        const { longitude, latitude } = await position.coords;
 
         const location = await axios.get(
-          `http://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          // i add only 's' after of 'http'
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
         );
 
         const userAddress = location.data.address;
