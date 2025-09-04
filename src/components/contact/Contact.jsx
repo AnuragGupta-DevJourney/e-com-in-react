@@ -6,9 +6,9 @@ function Contact() {
       <div className="rounded-2xl bg-white p-8 max-w-5xl mx-auto max-sm:p-3">
         {/* Header */}
         <div className="space-y-4">
-          <h1 className="text-center font-bold text-4xl">
+          <h1 className="text-center font-bold text-4xl max-sm:text-3xl">
             Get in Touch with
-            <span className="text-red-600">Jhepto</span>
+            <span className="text-red-600"> Jhepto</span>
           </h1>
         </div>
 

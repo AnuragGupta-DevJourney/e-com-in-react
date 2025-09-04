@@ -26,7 +26,7 @@ function ServicesSection() {
   ];
 
   return (
-    <div className="flex justify-center gap-4 flex-wrap">
+    <div className="flex justify-center gap-4 flex-wrap mb-8 max-sm:mb-4">
       {servicesResources.map((service , i) => {
         const { icon, title, description } = service;
 

@@ -19,6 +19,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import CreateContext from "../../context/CreateContext";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 function Navbar() {
   const { user } = useUser();
@@ -30,6 +31,7 @@ function Navbar() {
   // FETCHING THE USER LOCATION
   const fetchUserGeoLocation = async () => {
     try {
+      const loderId = toast.loading("Detecting the address...");
       navigator.geolocation.getCurrentPosition(async (position) => {
         const { longitude, latitude } = position.coords;
 
@@ -40,9 +42,17 @@ function Navbar() {
         const userAddress = location.data.address;
         setLocation(userAddress);
         setOpenGetLocationModal(false);
+        toast.success("Address fetched successfully", {
+          duration: 800,
+          id: loderId,
+        });
       });
     } catch (error) {
       console.log("error", error);
+      toast.error("Failed to fetch the address", {
+        duration: 800,
+        id: loderId,
+      });
     }
   };
 
@@ -95,7 +105,7 @@ function Navbar() {
 
             {/* location detect modal start */}
             {openGetLocationModal && (
-              <div className="p-4 gap-4 absolute top-8 w-[220px] flex flex-col items-center -right-10 bg-white/80 shadow-lg z-40">
+              <div className="p-4 gap-4 absolute top-8  w-[220px] flex flex-col items-center -right-10 bg-white/80 shadow-lg z-[99] max-sm:right-0">
                 <span className="flex flex-row-reverse gap-5 justify-between items-center">
                   <button
                     onClick={() =>
@@ -255,7 +265,7 @@ function Navbar() {
           {navMenusList.map((menu, i) => (
             <li key={i}>
               <NavLink
-              onClick={() => setOpenNavMenu(false)}
+                onClick={() => setOpenNavMenu(false)}
                 className={(e) =>
                   `${e.isActive ? "underline decoration-red-600" : ""}`
                 }
@@ -266,16 +276,16 @@ function Navbar() {
             </li>
           ))}
 
-          {
-            !user &&           <li>
-            <SignedOut>
-              <SignInButton className="bg-red-500 rounded-md text-white px-5 py-1 font-normal cursor-pointer text-[16px]" />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </li>
-          }
+          {!user && (
+            <li>
+              <SignedOut>
+                <SignInButton className="bg-red-500 rounded-md text-white px-5 py-1 font-normal cursor-pointer text-[16px]" />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </li>
+          )}
         </ul>
       </div>
     </header>

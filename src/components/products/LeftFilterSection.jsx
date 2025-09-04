@@ -1,6 +1,10 @@
 import React, { useContext, useState } from "react";
 import CreateContext from "../../context/CreateContext";
-import { MdDoubleArrow } from "react-icons/md";
+import {
+  MdDoubleArrow,
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from "react-icons/md";
 
 function LeftFilterSection({ setFilters, filters, setPage }) {
   const { uniqueCategories, uniqueBrands, allProductsData } =
@@ -12,7 +16,7 @@ function LeftFilterSection({ setFilters, filters, setPage }) {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
     setPage(1);
-    setOpenFilterMenu(false);
+    // setOpenFilterMenu(false)
   };
 
   const handleResetFilter = () => {
@@ -37,26 +41,32 @@ function LeftFilterSection({ setFilters, filters, setPage }) {
   return (
     <div
       className={`w-72 bg-slate-50 flex flex-col p-3 gap-4 shadow max-sm:fixed transition-all duration-300
-      max-sm:h-screen max-sm:py-8
+      max-sm:h-screen max-sm:py-8 max-sm:px-1.5 max-sm:w-52
     ${
       openFilterMenu
         ? "left-0 relative shadow-2xl top-0 z-50 bg-bg-slate-50 bottom-0 "
-        : "-left-72 bg-slate-50 z-50 top-0 "
+        : "-left-52 bg-slate-50 z-50 top-0 "
     }
     `}
     >
+      {/* filter button for mobile device */}
       <div
-        className="bg-red-600 absolute top-5/12 text-white rounded-md -right-8 py-4 sm:hidden"
+        className="bg-red-600 absolute top-5/12 text-white rounded-md -right-8 py-4 sm:hidden max-sm:pb-6"
         style={{ zIndex: "-888" }}
       >
         <button
-          className="flex flex-col justify-center items-center gap-2"
+          className="flex h-auto flex-col justify-center items-center gap-2"
           onClick={() => setOpenFilterMenu(!openFilterMenu)}
         >
-          <MdDoubleArrow fontSize={24} />
+          {openFilterMenu ? (
+            <MdKeyboardDoubleArrowLeft fontSize={24} />
+          ) : (
+            <MdKeyboardDoubleArrowRight fontSize={24} />
+          )}
           <p className="rotate-90 font-semibold">Filter</p>
         </button>
       </div>
+      {/* filter button for mobile device end */}
       <div>
         <input
           type="text"
@@ -64,7 +74,7 @@ function LeftFilterSection({ setFilters, filters, setPage }) {
           name="search"
           onChange={handlefilterChange}
           value={filters.search}
-          className="px-2 py-1 text-xl border border-slate-400/60 rounded-xl outline-none "
+          className="px-2 py-1 sm:text-xl border border-slate-400/60 rounded-xl outline-none max-sm:w-full "
         />
       </div>
       <div>

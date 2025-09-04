@@ -317,7 +317,7 @@ function Cart() {
                     <span>Delvery Charge</span>
                   </div>
                   <div className="space-x-1.5">
-                    <span>₹50</span>
+                    <span className="line-through">₹50</span>
                     <span className="font-semibold uppercase text-red-600">
                       Free
                     </span>
